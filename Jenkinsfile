@@ -1,16 +1,16 @@
 pipeline {
     agent { label 'master' }
-    tools {
+    /* tools {
         maven 'Maven 3.3.9'
-       / * jdk 'jdk1.8.0' */
-    }
+       jdk 'jdk1.8.0' 
+    } */
     stages {
         stage('Build') {
             parallel {
                 stage('Build Backend'){
                     steps {
                         dir('backend'){
-                            sh 'mvn clean install spotbugs:spotbugs checkstyle:checkstyle deploy'
+                            sh '/usr/share/maven/bin/mvn clean install spotbugs:spotbugs checkstyle:checkstyle deploy'
                         }
                     }
                     post {
